@@ -5,6 +5,7 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"github.com/go-sql-driver/mysql"
 	"github.com/labstack/echo"
 	"math"
@@ -27,7 +28,10 @@ func (sh *ShortLinkHandler) CreateShortLink(c echo.Context) error {
 	inputURL := c.FormValue("inputURL")
 	// url 유효성 검사
 	if !isValidURL(inputURL) {
-		return c.String(http.StatusBadRequest, "invalid url")
+		return c.String(
+			http.StatusBadRequest,
+			fmt.Sprintf("입력주소: %s\ninvalid url, (주소가 올바르다면 http:// 또는 https:// 를 확인해주세요.)", inputURL),
+		)
 	}
 
 	var shortLinkID, createdAt string

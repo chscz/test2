@@ -21,7 +21,7 @@ func (sh *ShortLinkHandler) GetShortLink(c echo.Context) error {
 		return c.String(http.StatusBadRequest, "not exist link id")
 	}
 
-	return c.JSON(http.StatusCreated, map[string]interface{}{
+	return c.JSON(http.StatusOK, map[string]interface{}{
 		"data": map[string]string{
 			"shortId":   shortLink.ID,
 			"url":       shortLink.URL,

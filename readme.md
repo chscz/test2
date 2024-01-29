@@ -13,37 +13,51 @@
     choco install go
     ```
   - mariadb install
+    - https://mariadb.org/download/?t=mariadb&p=mariadb&r=11.0.4&os=windows&cpu=x86_64&pkg=msi&m=blendbyte
     ```shell
     choco install mariadb --version=10.2.14
     ```
+    - set user
+      - root / 1111
     - set schema
       ```
       CREATE DATABASE `ab180` /*!40100 COLLATE 'utf8mb4_general_ci' */;
+      
+      USE `ab180`;
     
       CREATE TABLE `short_link` (
       `id` VARCHAR(191) NOT NULL COLLATE 'utf8mb4_general_ci',
       `created_at` TIMESTAMP NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
       `url` VARCHAR(191) NOT NULL COLLATE 'utf8mb4_general_ci',
-      PRIMARY KEY (`id`) USING BTREE;
+      PRIMARY KEY (`id`) USING BTREE
       )
       COLLATE='utf8mb4_general_ci'
       ENGINE=InnoDB;
       ``` 
   - influxdb install
+    - https://docs.influxdata.com/influxdb/v2/install/?t=Windows
     ```shell
     choco install influxdb2
     ```
+    - set token, org, bucket, measurement
   - grafana install
-    ```shell
-    choco install grafana --version=6.1.6
-    ````
-    ```
-      from(bucket: "ab180")
-      |> range(start: -7d)
-      |> filter(fn: (r) => r["_measurement"] == "data")
-      |> aggregateWindow(every: 1d, fn: count)
-      |> yield(name: "_value")
-    ```
+    - https://grafana.com/grafana/download?platform=windows
+      ```shell
+      choco install grafana --version=6.1.6
+      ````
+      ```
+        from(bucket: "ab180")
+        |> range(start: -7d)
+        |> filter(fn: (r) => r["_measurement"] == "data")
+        |> aggregateWindow(every: 1d, fn: count)
+        |> yield(name: "_value")
+      ```
+    
+  - project root path 에서
+    - go mod init ab180
+    - go mod tidy
+    - go mod vendor
+    - go run main.go
 
 # mac
   - homebrew install
