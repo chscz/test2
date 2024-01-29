@@ -1,6 +1,6 @@
 # window
   - chocolety install
-    - powershell 에서 아래 command 실행하여 설치(https://chocolatey.org/install)
+    - powershell(관리자 권한 실행)에서 아래 command 실행하여 설치(https://chocolatey.org/install)
       ```shell
       Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
       ``` 
