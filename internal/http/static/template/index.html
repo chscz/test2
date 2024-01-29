@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Request Page</title>
+</head>
+<body>
+<h3>생성하기</h3>
+<form id="createIDForm" action="/short-links" method="post">
+    <label for="inputURL">URL 입력:</label>
+    <input type="text" id="inputURL" name="inputURL" required>
+    <button type="생성">Submit</button>
+</form>
+<br>
+<h3>조회하기</h3>
+<form id="getIDForm" action="/short-links" method="get">
+    <label for="inputURL">조회할 Short Link ID 입력:</label>
+    <input type="text" id="inputShortLinkID" name="inputShortLinkID" required>
+    <button type="조회">Submit</button>
+</form>
+</body>
+</html>
